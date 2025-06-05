@@ -6,6 +6,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  getRaw: (key: string) => any;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -18,26 +19,38 @@ const translations = {
       about: '关于我们', 
       equipment: '产品中心',
       applications: '客户案例',
-      technologies: '技术支持',
       services: '相关服务',
       contact: '联系我们'
     },
     // Home Page
     home: {
-      heroTitle: '专业的气体分析企业',
-      heroSubtitle: '半个世纪的专业经验，创新与传承',
+      heroTitle: '高纯气体分析解决方案专家',
+      heroSubtitle: '以精密分析技术为核心，为高端制造业提供全生命周期气体品质解决方案',
       exploreSolutions: '查看我们的解决方案',
       contactUs: '联系我们',
-      stats: {
-        projects: '自2004年以来的项目',
-        employees: '全球员工',
-        experience: '年专业经验',
-        distributors: '全球分销商'
-      },
+      advantages: [
+        [
+          { title: '超高精度检测', desc: '拥有ppb/ppt级检测能力的仪器（如HALO系列氧分析仪、CRDS原理水分析仪），覆盖H₂O/O₂/颗粒/痕量气体等全杂质谱。' },
+          { title: '先进技术平台', desc: '整合CRDS（激光腔衰荡）、TDL（可调谐激光）、PDHID（氦离子化）等国际前沿检测原理。' }
+        ],
+        [
+          { title: '交钥匙解决方案', desc: '从CQC/IQC系统设计、管道布置、PLC通讯到安全连锁（如H₂/CO₂侦测）的全流程集成。' },
+          { title: '自主实验室支撑', desc: '配备洁净实验室与集成中心，保障系统可靠性与维修零污染。' }
+        ],
+        [
+          { title: '"销售-集成-维保-培训"闭环', desc: '覆盖设备销售、安装调试、维修校准、纯化器/管道测试及技术培训。' },
+          { title: '原厂授权背书', desc: '获Horiba、PEAK、PMS等品牌授权，保障设备与服务的合规性。' }
+        ],
+        [
+          { title: '深度理解行业痛点', desc: 'CQC系统直击气体异常导致的损失风险，提供实时报警与数据溯源功能。' }
+        ]
+      ],
+      advantageTitles: ['先进设备','一体化集成','全生命周期服务','行业定制'],  
       aboutSection: {
         title: '关于我们',
         text1: '上海菲科思科技有限公司成立于2021年，专注致力于高纯气体分析行业。专业负责CQC系统和IQC的设计、集成制造、安装调试、售后维修和维保服务，并从事分析仪器的贸易、研发和客户的专业培训。',
-        text2: '我们还提供纯化器测试以及管道五项测试，以及分析仪器的校准等服务。公司设有自己的洁净实验室和集成中心！可以有效保障CQC系统集成的品质和分析仪维修环境，方便设备的维修/维护，减少维修时带来的污染，同时我们实验室配置有高精度的水氧色谱仪等常备仪器。',
+        text2: '我们还提供纯化器测试以及管道五项测试，以及分析仪器的校准等服务。',
+        text3: '公司设有自己的洁净实验室和集成中心！可以有效保障CQC系统集成的品质和分析仪维修环境，方便设备的维修/维护，减少维修时带来的污染，同时我们实验室配置有高精度的水氧色谱仪等常备仪器。',
         learnMore: '了解更多'
       },
       equipmentSection: {
@@ -65,18 +78,39 @@ const translations = {
         title: '准备开始您的项目？',
         subtitle: '联系我们的专家团队，获取定制解决方案和专业建议。',
         contact: '立即联系'
-      }
+      },
+      businessScope: {
+        title: '业务范围',
+        cqc: 'CQC系统的设计与集成',
+        iqc: 'IQC系统和分析小屋的集成',
+        sales: '气体分析仪的销售、研发与维修维保',
+        solution: '气体分析解决方案',
+        support: '技术与售后支持',
+        purifier: '纯化器测试和管道五项测试'
+      },
     },
     // About Page
     about: {
       heroTitle: '关于我们',
-      heroSubtitle: '半个世纪的专业经验，创新与传承',      historySection: {
-        title: '公司历史',
-        text1: 'FICUS成立于20世纪初，最初专注于无线电设备制造，如今已发展成为气体色谱分析领域的领导者。',
-        text2: '我们位于中国上海，将约95%的产品出口到全球市场，与全球主要工业气体生产商和供应商合作。我们的发展历程见证了从无线电技术到气体分析领域的转型与创新。',
-        text3: '在20世纪50年代，随着晶体管收音机从美国进口取代了无线电业务，我们开始转型，开发用于测量焊接用氩气中杂质的色谱仪。这些色谱仪配备了使用高频放电的检测器，服务于比利时列日地区的钢铁厂。',
-        text4: '我们的产品范围逐渐扩大，包括用于工业和实验室应用的高纯度检测器。我们在这一领域发挥了"开拓性作用"，进一步拓展产品范围，开发了自主的分析软件和工程部门。',
+      heroSubtitle: '高纯气体分析解决方案专家',      
+      historySection: {
+        title: '公司简介',
+        text1: '上海菲科思科技（2021年成立）是专注高纯气体分析领域的国家高新技术企业，致力于为半导体、液晶面板等高端制造业提供全流程气体品质监测与管理解决方案。',
+        text2: '我们以"用精密分析技术守护中国智造的生命线"为准则，构建从气体杂质检测、系统集成到数据服务的完整技术生态。',
+        text3: '"不以销售设备为终点，而以客户良率为标尺"​',
+        text4: '通过技术穿透力与服务韧性，成为电子产业链中无声却关键的品质基石。',
         imageText: '公司发展历程'
+      },
+      whyChooseUs: {
+        title: '为何选择我们',
+        painTitle: '直面千亿级产业痛点',
+        painDesc: '电子级气体中 1ppb 的杂质 = 百万级损失！',
+        solutionTitle: '我们解决：',
+        solutions: [
+          '气体污染导致的芯片良率骤降',
+          '制程中断引发的产能停滞',
+          '品质追溯缺失的责任盲区'
+        ]
       },
       missionSection: {
         title: '我们的使命',
@@ -99,16 +133,30 @@ const translations = {
         intlDirectorDesc: '负责全球市场拓展和客户关系管理，拥有丰富的国际贸易经验。'
       },
       globalSection: {
-        title: '全球业务',
-        description: 'FICUS的产品和服务覆盖全球多个国家和地区，通过广泛的分销网络，为全球客户提供高质量的气体分析解决方案。',
-        asia: '亚洲',
-        asiaCount: '6个国家',
-        europe: '欧洲',
-        europeCount: '9个国家',
-        northAmerica: '北美洲',
-        northAmericaCount: '3个国家',
-        others: '其他地区',
-        othersCount: '3个国家'
+        title: '全国业务',
+        description: 'FICUS的产品和服务覆盖全国主要半导体产业聚集地，通过完善的服务网络，为国内高端制造业提供高质量的气体分析解决方案。',
+        regions: [
+          {
+            name: '长三角地区',
+            cities: '上海、苏州、无锡、南京',
+            description: '以上海张江、苏州工业园区为核心的集成电路产业集群'
+          },
+          {
+            name: '珠三角地区',
+            cities: '深圳、广州、东莞',
+            description: '以深圳、广州为核心的电子信息产业带'
+          },
+          {
+            name: '京津冀地区',
+            cities: '北京、天津、石家庄',
+            description: '以北京亦庄、天津滨海新区为核心的科技创新带'
+          },
+          {
+            name: '中西部地区',
+            cities: '武汉、成都、重庆、西安',
+            description: '以武汉光谷、成都高新区为核心的产业创新基地'
+          }
+        ]
       },
       ctaSection: {
         title: '加入FICUS全球合作伙伴网络',
@@ -117,27 +165,27 @@ const translations = {
     },    // Equipment Page
     equipment: {
       hero: {
-        title: '设备',
+        title: '产品中心',
         subtitle: 'FICUS提供全面的气体分析设备，从标准分析仪到定制系统，满足各种工业和实验室应用需求。'
       },
       overview: {
-        title: '设备概览',
-        description: 'FICUS的气体分析设备采用最新技术，确保高精度、可靠性和易用性。我们的产品线涵盖各种检测器、色谱柱、进样系统和数据处理软件。',
+        title: '产品概览',
+        description: 'FICUS的气体分析设备采用最新技术，确保高精度、可靠性和易用性。我们的产品线涵盖各种气体水、氧、颗粒分析仪、色谱仪、CQC、IQC集成设计及制造。',
         productLine: '我们的产品线包括：',
         product1: '气相色谱仪',
         product2: '气体纯度分析仪',
-        product3: '在线监测系统',
-        product4: '便携式分析设备',
+        product3: 'IQC系统和分析小屋的集成',
+        product4: 'CQC项目集成',
         product5: '定制分析解决方案',
-        quality: '所有设备均由我们的专业团队设计和制造，确保每个产品都符合最高质量标准。',
+        quality: '所有集成均由我们的专业团队设计和制造，确保每个产品都符合最高质量标准。',
         imageText: '设备概览'
       },
       products: {
         title: '精选产品',
         getDetails: '查看详情',
         product1: {
-          name: 'GC-2000 气相色谱仪',
-          description: 'GC-2000 是我们的旗舰产品，适用于工业和实验室的高精度气体分析。该设备采用先进的检测技术，可分析多种气体成分，满足多样化应用需求。',
+          name: '水氧颗粒分析系列',
+          description: '可连续监测大宗气体内H2O,O2,颗粒等杂质的含量，最低检测限甚至可达ppt级别。颗粒具有0.1um，0.2um，0. 3um，0. 5um，1. 0um，2. 0um，3.0um，5. 0um共8个通道。',
           featuresTitle: '主要特点：',
           feature1: 'ppb级高精度检测',
           feature2: '多通道同时分析',
@@ -146,8 +194,8 @@ const translations = {
           feature5: '数据存储与远程访问'
         },
         product2: {
-          name: 'PurityPro 气体纯度分析仪',
-          description: 'PurityPro 专为高纯气体分析设计，可快速检测微量杂质，确保气体纯度符合行业标准。广泛应用于半导体、医药、食品等行业。',
+          name: '色谱分析系列',
+          description: '应用于连续的测量大宗气体内H2,CO, CO2, CH4, NMHC,N2, Ar等杂质的含量，最低检测限＜0.5ppb级别。',
           featuresTitle: '主要特点：',
           feature1: '响应速度快',
           feature2: '高灵敏度检测',
@@ -156,7 +204,7 @@ const translations = {
           feature5: '直观触摸屏界面'
         },
         product3: {
-          name: 'MonitorX 在线监测系统',
+          name: 'CQC集成及IQC小屋项目集成',
           description: 'MonitorX 提供适用于工业生产线和环境监测的连续气体监测解决方案。系统可24小时不间断工作，实时数据与报警功能。',
           featuresTitle: '主要特点：',
           feature1: '连续监测能力',
@@ -193,100 +241,83 @@ const translations = {
         title: '寻找适合您需求的设备？',
         subtitle: '联系我们的专家团队，获取产品信息和技术咨询。',
         button: '联系我们'
+      },
+      authorizationSection: {
+        title: '授权证书',
+        desc: [
+          'PEAK 实验室授权书',
+          '光梓科技授权书'
+        ],
+        images: [
+          '/certs/auth-peak.jpg',
+          '/certs/auth-photonics.jpg'
+        ]
       }
-    },    // Applications Page  
+    },    
+    // Applications Page  
     applications: {
       hero: {
         title: '应用',
         subtitle: 'FICUS的气体分析解决方案广泛应用于多个行业，为客户提供精确、可靠的分析结果。'
       },
-      overview: {
-        title: '应用概览',
-        description: 'FICUS的产品和服务在多个行业和应用场景中发挥着重要作用。我们为不同行业的特殊需求提供定制化解决方案。',
-        fieldsList: '我们的解决方案已成功应用于以下领域：',
-        field1: '工业气体生产',
-        field2: '半导体制造',
-        field3: '医药与生物技术',
-        field4: '环境监测',
-        field5: '科研与实验室',
-        field6: '石油化工',
-        conclusion: '每个行业都有其特定的挑战和需求，我们的专业团队与客户紧密合作，提供量身定制的解决方案。'
-      },
-      industrialGas: {
-        title: '工业气体',
-        description1: 'FICUS为工业气体生产商提供高精度分析解决方案，确保产品质量和安全性。我们的设备可检测多种工业气体中的微量杂质，满足最严格的纯度要求。',
-        description2: '主要应用包括：',
-        application1: '高纯气体质量控制',
-        application2: '混合气体成分分析',
-        application3: '生产过程监控',
-        application4: '储运安全监测',
-        application5: '认证与合规检测',
-        description3: '我们的解决方案帮助工业气体生产商确保产品符合行业标准和客户要求，提高生产效率和产品质量。'
-      },
-      semiconductor: {
-        title: '半导体制造',
-        description1: '半导体制造对气体纯度有极高要求，微量杂质可能导致产品缺陷和良率下降。FICUS高精度分析设备可检测ppb甚至ppt级别的杂质，保障生产环境和工艺气体的纯净。',
-        description2: '主要应用包括：',
-        application1: '超高纯气体纯度验证',
-        application2: '工艺气体监测',
-        application3: '洁净室环境监控',
-        application4: '排放气体分析',
-        application5: '泄漏检测',
-        description3: '我们的解决方案帮助半导体制造商提升产品质量，减少缺陷，优化生产流程。'
-      },
-      pharmaceutical: {
-        title: '医药与生物技术',
-        description1: '医药和生物技术行业需要精确的气体分析以确保产品质量和生产环境安全。FICUS的解决方案帮助客户满足严格的监管要求和质量标准。',
-        description2: '主要应用包括：',
-        application1: '医用气体纯度检测',
-        application2: '发酵过程监测',
-        application3: '无菌环境监控',
-        application4: '包装气体分析',
-        application5: '研发实验室分析',
-        description3: '我们的解决方案帮助医药和生物技术企业确保产品安全和质量，符合GMP等监管要求。'
-      },
-      environmental: {
-        title: '环境监测',
-        description1: '环境保护日益重要，准确的气体分析对于监测空气质量、排放控制和合规验证至关重要。FICUS提供可靠的环境监测解决方案，帮助客户满足环保要求。',
-        description2: '主要应用包括：',
-        application1: '工业排放监测',
-        application2: '环境空气质量分析',
-        application3: '温室气体监测',
-        application4: '有害气体检测',
-        application5: '合规验证和报告',
-        description3: '我们的解决方案帮助企业和机构监测和控制环境影响，满足日益严格的环保法规要求。'
-      },
-      research: {
-        title: '科研与实验室',
-        description1: '科研机构和实验室需要高精度的气体分析设备来支持各类研究项目和实验。FICUS提供灵活、精确的分析解决方案，满足科研需求。',
-        description2: '主要应用包括：',
-        application1: '材料研究',
-        application2: '催化剂开发',
-        application3: '环境研究',
-        application4: '生物医学研究',
-        application5: '教学与培训',
-        description3: '我们的解决方案为科研人员提供可靠的分析工具，支持科学发现和技术创新。'
-      },
+      
       caseStudies: {
         title: '成功案例',
         case1: {
-          title: '大型工业气体生产商',
+          title: '某大型工业气体生产商',
           challenge: '挑战：需要提升高纯氩气生产线的质量控制能力，降低产品不合格率。',
           solution: '解决方案：FICUS提供了定制的在线监测系统，实时分析生产过程中的气体纯度，并与控制系统集成。',
           result: '结果：产品不合格率降低85%，生产效率提升30%，客户满意度显著提升。'
         },
         case2: {
-          title: '领先半导体制造商',
-          challenge: '挑战：需要更精确地监测生产环境中的微量杂质气体，提高产品良率。',
-          solution: '解决方案：FICUS提供了高灵敏度的多点监测系统，可检测ppt级别的关键杂质。',
-          result: '结果：产品良率提升5%，每年节省数百万美元成本，设备投资6个月内回收。'
+          title: '某领先半导体制造商',
+          challenge: '挑战：生产过程中微量杂质导致芯片良率下降，需提升气体纯度监控能力。',
+          solution: '解决方案：FICUS为其部署了高灵敏度痕量分析仪，实现对关键工艺气体的实时监测。',
+          result: '结果：芯片良率提升12%，生产过程更可控，客户信任度增强。'
         }
       },
       ctaSection: {
         title: '寻找适合您行业的解决方案？',
         subtitle: '联系我们的应用专家，获取针对您特定需求的建议和方案。',
         contact: '联系我们'
-      }
+      },
+      customersTable: {
+        title: '合作客户',
+        headers: ['客户名称', '产品'],
+        data: [
+          ['无锡华润微电子', 'CQC系统集成及仪器'],
+          ['广州新锐光掩膜科技有限公司', 'CQC系统集成及仪器'],
+          ['上海集成电路材料研究院', 'CQC系统集成及仪器'],
+          ['无锡先导半导体材料有限公司', 'CQC系统集成及仪器'],
+          ['上海嘉定光通信项目', 'CQC系统集成及仪器'],
+          ['天津中环半导体股份有限公司', 'CQC系统集成及仪器'],
+          ['厦门士兰集宏碳化硅项目', 'CQC系统集成及仪器'],
+          ['江苏昊感科技责任有限公司碳化硅项目', 'CQC系统集成及仪器'],
+          ['上海新傲科技股份有限公司', '仪器和分析服务'],
+          ['嘉兴晶丰芯驰半导体材料有限公司', '仪器和分析服务'],
+          ['中科富海', 'IQC分析小屋及仪器设备'],
+          ['广钢气体', 'CQC系统集成和IQC集成'],
+          ['大连中鼎化学有限公司', '仪器及服务'],
+          ['山东合益气体股份有限公司', '预处理系统及仪器'],
+          ['大连华邦化学有限公司', '仪器及预处理系统'],
+          ['湖北玖恩智能科技有限公司', 'CQC系统及仪器'],
+          ['至嘉气体', 'CQC系统集成和仪器服务'],
+          ['内蒙古光能科技有限公司', '预处理系统'],
+          ['上海启元气体发展有限公司', 'CQC系统及仪器'],
+          ['三爱富', '分析小屋及仪器'],
+          ['江苏九丰', 'IQC系统集成及仪器'],
+          ['浙江中宁', '分析小屋及仪器'],
+          ['淮安雷硕电子材料科技有限公司', '分析小屋及仪器'],
+          ['中国电子系统工程第二建设有限公司', 'CQC系统集成及仪器'],
+          ['辽宁汇晟机电工程有限公司', 'CQC系统集成及仪器'],
+          ['上海菲翔机电设备有限公司', 'CQC系统集成及仪器'],
+          ['霍锐德电子技术(上海)有限公司', 'CQC系统集成及仪器'],
+          ['无锡红丰机电设备安装工程有限公司', '仪器及服务'],
+          ['上海皓固机械工业有限公司', '仪器及服务'],
+          ['苏州美思佳机电工程有限公司', '仪器及服务'],
+          ['上海锡然电子系统工程有限公司', '仪器及服务'],
+        ]
+      },
     },
     // Services Page  
     services: {
@@ -404,124 +435,7 @@ const translations = {
         contact: '联系我们'
       }
     },
-    // Technologies Page
-    technologies: {
-      heroTitle: '技术',
-      heroSubtitle: 'FICUS的创新技术为气体分析领域设立了新标准，提供更高精度、更可靠的分析结果。',      coreSection: {
-        title: '核心技术',
-        description1: 'FICUS在气体分析领域拥有多项核心技术，这些技术是我们产品性能和可靠性的基础。我们持续投资研发，不断提升技术水平，为客户提供更好的解决方案。',
-        description2: '我们的核心技术包括：',
-        tech1: '高频放电检测技术',
-        tech2: '微量杂质分析技术',
-        tech3: '多组分同时分析技术',
-        tech4: '自动校准系统',
-        tech5: '智能数据处理算法',
-        description3: '这些技术使我们的产品能够提供更高精度、更可靠的分析结果，满足客户最严格的要求。',
-        visualTitle: '核心技术',
-        visualSubtitle: '创新驱动，技术领先'
-      },
-      detectionSection: {
-        title: '检测技术',
-        description1: 'FICUS的检测技术是我们产品的核心，我们开发了多种高性能检测器，适用于不同的气体分析需求。',
-        description2: '我们的主要检测技术包括：',
-        hdd: '高频放电检测器 (HDD)：适用于高纯气体中微量杂质的检测，灵敏度可达ppb级别',
-        tcd: '热导检测器 (TCD)：广泛应用于各种气体成分的分析，稳定可靠',
-        fid: '火焰离子化检测器 (FID)：适用于有机化合物的高灵敏度检测',
-        pdd: '脉冲放电检测器 (PDD)：提供宽线性范围和高灵敏度，适用于多种气体分析',
-        ecd: '电化学检测器 (ECD)：对特定气体具有极高的选择性和灵敏度',
-        description3: '我们根据客户的具体需求，选择最适合的检测技术，确保分析结果的准确性和可靠性。'
-      },
-      softwareSection: {
-        title: '软件与数据分析',
-        description1: 'FICUS开发了先进的分析软件，为用户提供直观的操作界面和强大的数据处理能力。我们的软件不仅控制设备运行，还提供全面的数据分析和报告功能。',
-        description2: '我们的软件特点包括：',
-        feature1: '用户友好的图形界面',
-        feature2: '实时数据显示和处理',
-        feature3: '自动峰识别和定量分析',
-        feature4: '多种数据导出格式',
-        feature5: '自定义报告生成',
-        feature6: '远程访问和控制',
-        feature7: '数据安全存储和备份',
-        description3: '我们的软件持续更新和优化，确保用户获得最佳的使用体验和分析结果。'
-      },
-      innovationSection: {
-        title: '创新与研发',
-        description1: 'FICUS高度重视技术创新和研发投入，我们的研发团队不断探索新技术和新方法，提升产品性能和用户体验。',
-        description2: '我们的研发重点包括：',
-        focus1: '提高检测灵敏度和精度',
-        focus2: '扩展分析范围和应用领域',
-        focus3: '简化操作流程，提升用户体验',
-        focus4: '增强数据处理和分析能力',
-        focus5: '开发新型检测技术和方法',
-        description3: '我们与科研机构和行业伙伴密切合作，共同推动气体分析技术的发展和创新。'
-      },
-      comparisonSection: {
-        title: '技术对比',
-        headers: {
-          technology: '检测技术',
-          sensitivity: '灵敏度',
-          range: '线性范围',
-          selectivity: '选择性',
-          application: '主要应用'
-        },
-        hdd: {
-          name: '高频放电检测器 (HDD)',
-          sensitivity: 'ppb级',
-          range: '10⁵',
-          selectivity: '高',
-          application: '高纯气体分析'
-        },
-        tcd: {
-          name: '热导检测器 (TCD)',
-          sensitivity: 'ppm级',
-          range: '10⁴',
-          selectivity: '中',
-          application: '通用气体分析'
-        },
-        fid: {
-          name: '火焰离子化检测器 (FID)',
-          sensitivity: 'ppb级',
-          range: '10⁷',
-          selectivity: '高',
-          application: '有机化合物分析'
-        },
-        pdd: {
-          name: '脉冲放电检测器 (PDD)',
-          sensitivity: 'ppb级',
-          range: '10⁶',
-          selectivity: '高',
-          application: '多组分气体分析'
-        },
-        ecd: {
-          name: '电化学检测器 (ECD)',
-          sensitivity: 'ppt级',
-          range: '10³',
-          selectivity: '极高',
-          application: '特定气体检测'
-        }
-      },
-      patentsSection: {
-        title: '专利与知识产权',
-        description: 'FICUS重视知识产权保护，拥有多项气体分析技术专利，这些专利是我们技术创新和市场竞争力的重要保障。',
-        detection: {
-          title: '检测技术专利',
-          description: '包括高频放电检测器、脉冲放电技术等多项专利，提升检测精度和可靠性。'
-        },
-        dataProcessing: {
-          title: '数据处理专利',
-          description: '包括智能算法、自动校准系统等专利，提高数据处理效率和准确性。'
-        },
-        systemIntegration: {
-          title: '系统集成专利',
-          description: '包括模块化设计、自动化控制等专利，提升系统性能和用户体验。'
-        }
-      },
-      ctaSection: {
-        title: '了解更多技术详情？',
-        subtitle: '联系我们的技术专家，获取更多关于FICUS技术的详细信息和应用建议。',
-        contact: '联系我们'
-      }
-    },    // Contact Page
+     // Contact Page
     contact: {
       hero: {
         title: '联系我们',
@@ -535,7 +449,6 @@ const translations = {
         postal: '201800',
         phoneTitle: '联系电话',
         phone: '+86 18915970248',
-        fax: '传真：+86 21 1234 5679',
         emailTitle: '邮箱',
         generalEmail: '一般咨询：info@ficus.com',
         salesEmail: '销售咨询：sales@ficus.com',
@@ -602,16 +515,25 @@ const translations = {
       },
       map: {
         title: '公司位置',
+        addressTitle: '公司地址',
+        address: '中国 上海市嘉定区城北路1585弄',
+        address2: '上海天华人工智能科创园 11号楼101',
+        trafficTitle: '交通指引',
+        trafficList: [
+          '地铁11号线 嘉定西站 约2公里',
+          '地铁14号线 桃浦新村站 约8公里',
+          '自驾: 沪嘉高速 → 城北路出口'
+        ],
         placeholder: '地图将在此显示'
       },
       faq: {
         title: '常见问题',
         question1: '如何获取产品报价？',
-        answer1: '您可以填写上方联系表单并选择“产品咨询”作为主题，或直接发送邮件至 sales@ficus-tech.com，我们的销售团队将在24小时内回复。',
+        answer1: '您可以填写上方联系表单并选择"产品咨询"作为主题，或直接发送邮件至 sales@ficus-tech.com，我们的销售团队将在24小时内回复。',
         question2: '如何获得技术支持？',
-        answer2: '已购买我们产品的客户可拨打 +86 21 5888 XXXX 或发送邮件至 support@ficus-tech.com 获取技术支持。请提供设备序列号和详细问题描述，以便我们更好地为您服务。',
+        answer2: '已购买我们产品的客户可拨打 +86 18915970248 或发送邮件至 sales@ficus-tech.com 获取技术支持。请提供设备序列号和详细问题描述，以便我们更好地为您服务。',
         question3: '如何成为FICUS分销合作伙伴？',
-        answer3: '如有意成为FICUS分销合作伙伴，请发送邮件至 partnership@ficus-tech.com，说明公司信息、业务范围及合作意向。我们的商务团队会与您联系洽谈合作细节。'
+        answer3: '如有意成为FICUS分销合作伙伴，请发送邮件至 sales@ficus-tech.com，说明公司信息、业务范围及合作意向。我们的商务团队会与您联系洽谈合作细节。'
       },
       cta: {
         title: '准备开启您的项目？',
@@ -622,13 +544,21 @@ const translations = {
     },
     // Footer
     footer: {
-      description: 'FICUS专注气体分析技术超过50年，为全球客户提供专业的分析解决方案。',
+      description: '以精密分析技术为核心，为高端制造业提供全生命周期气体品质解决方案',
       quickLinks: '快速链接',
       contact: '联系我们',
-      address: '上海市浦东新区张江高科技园区',
-      phone: '电话：+86 21 1234 5678',
-      email: '邮箱：info@ficus.com',
-      copyright: '© 2024 FICUS. 版权所有。'
+      address: '地址：中国上海市',
+      phone: '电话：+86 123 4567 8910',
+      email: '邮箱：info@ficus-tech.com',
+      copyright: '© 2025 FICUS. 版权所有。'
+    },
+    certificates: {
+      title: '安全证书',
+      images: [
+        '/certs/cn-iso9001.jpg',
+        '/certs/cn-iso45001.jpg',
+        '/certs/cn-iso14001.jpg'
+      ]
     }
   },
   en: {    // Navigation
@@ -637,31 +567,43 @@ const translations = {
       about: 'About Us',
       equipment: 'Equipment', 
       applications: 'Applications',
-      technologies: 'Technologies',
       services: 'Services',
       contact: 'Contact Us'
     },
     // Home Page
     home: {
-      heroTitle: 'Your Gas Analysis Expert',
-      heroSubtitle: 'Half a century of professional experience, innovation and heritage',
+      heroTitle: 'Expert in High-Purity Gas Analysis Solutions',
+      heroSubtitle: 'With precision analysis technology as the core, providing full lifecycle gas quality solutions for high-end manufacturing',
       exploreSolutions: 'Explore Our Solutions',
       contactUs: 'Contact Us',
-      stats: {
-        projects: 'Projects since 2004',
-        employees: 'Global employees',
-        experience: 'Years of professional experience',
-        distributors: 'Global distributors'
-      },
+      advantages: [
+        [
+          { title: 'Ultra-high Precision Detection', desc: 'Equipped with ppb/ppt-level detection instruments (such as HALO series oxygen analyzers, CRDS-based moisture analyzers), covering H₂O/O₂/particles/trace gases and other full impurity spectrum.' },
+          { title: 'Advanced Technology Platform', desc: 'Integrated CRDS (Cavity Ring-Down Spectroscopy), TDL (Tunable Diode Laser), PDHID (Pulsed Discharge Helium Ionization Detector) and other international cutting-edge detection principles.' }
+        ],
+        [
+          { title: 'Turnkey Solution', desc: 'Full-process integration from CQC/IQC system design, pipeline layout, PLC communication to safety interlock (such as H₂/CO₂ detection).' },
+          { title: 'Independent Lab Support', desc: 'Equipped with clean laboratory and integration center to ensure system reliability and zero-pollution maintenance.' }
+        ],
+        [
+          { title: 'Full Lifecycle Service', desc: 'Closed loop of "Sales-Integration-Maintenance-Training": covering equipment sales, installation and commissioning, maintenance and calibration, purifier/pipeline testing and technical training.' },
+          { title: 'OEM Authorization', desc: 'Authorized by brands such as Horiba, PEAK, PMS to ensure compliance of equipment and services.' }
+        ],
+        [
+          { title: 'Deep Industry Insight', desc: 'CQC system directly addresses the huge loss risk caused by gas anomalies, providing real-time alarm and data traceability functions.' }
+        ]
+      ],
+      advantageTitles: ['Advanced Equipment', 'Integrated Solution', 'Full Lifecycle Service', 'Industry Customization'],
       aboutSection: {
         title: 'About Us',
-        text1: 'Founded in the early 20th century and initially focused on radio equipment manufacturing, FICUS has evolved into a leader in gas chromatography analysis.',
-        text2: 'Based in Shanghai, China, we export approximately 95% of our products to the global market, working with major industrial gas producers and suppliers worldwide. Our product range includes high-purity detectors for industrial and laboratory applications, and we have developed proprietary analytical software and engineering departments.',
+        text1: 'Shanghai FICUS Technology Co., Ltd. was established in 2021, focusing on the high-purity gas analysis industry. We are professionally responsible for the design, integration manufacturing, installation and commissioning, after-sales maintenance and service of CQC and IQC systems, and engaged in the trade, R&D, and professional training of analytical instruments.',
+        text2: 'We also provide purifier testing, pipeline five-item testing, and calibration services for analytical instruments.',
+        text3: 'The company has its own clean laboratory and integration center! This effectively ensures the quality of CQC system integration and the environment for analytical instrument maintenance, facilitating equipment maintenance/repair and reducing pollution during maintenance. Our laboratory is equipped with high-precision water-oxygen chromatographs and other standard instruments.',
         learnMore: 'Learn More'
       },
       equipmentSection: {
         title: 'Equipment',
-        text1: 'Our team excels in manufacturing equipment that meets the highest industry standards, ensuring precision and quality.',
+        text1: 'Our team excels in providing equipment that meets the highest industry standards.',
         text2: 'FICUS provides comprehensive gas analysis solutions, from standard analyzers to custom systems, meeting various industrial and laboratory application needs. Our equipment uses the latest technology to ensure high precision, reliability, and ease of use.',
         learnMore: 'Learn More'
       },
@@ -677,25 +619,47 @@ const translations = {
         },
         environmental: {
           title: 'Environmental Monitoring',
-          description: 'Providing environmental gas monitoring solutions to help companies and institutions meet environmental requirements and standards.'        },
+          description: 'Providing environmental gas monitoring solutions to help companies and institutions meet environmental requirements and standards.'
+        },
         viewAll: 'View All Applications'
       },
       ctaSection: {
         title: 'Ready to Start Your Project?',
         subtitle: 'Contact our expert team for customized solutions and professional advice.',
         contact: 'Contact Now'
-      }
+      },
+      businessScope: {
+        title: 'Business Scope',
+        cqc: 'Design and integration of CQC systems',
+        iqc: 'Integration of IQC systems and analysis cabins',
+        sales: 'Sales, R&D and maintenance of gas analyzers',
+        solution: 'Gas analysis solutions',
+        support: 'Technical and after-sales support',
+        purifier: 'Purifier testing and pipeline five-item testing'
+      },
     },
     // About Page
     about: {
       heroTitle: 'About Us',
-      heroSubtitle: 'Half a century of professional experience, innovation and heritage',      historySection: {
-        title: 'Company History',
-        text1: 'Founded in the early 20th century and initially focused on radio equipment manufacturing, FICUS has evolved into a leader in gas chromatography analysis.',
-        text2: 'Based in Shanghai, China, we export approximately 95% of our products to the global market, working with major industrial gas producers and suppliers worldwide. Our development journey witnesses the transformation and innovation from radio technology to gas analysis field.',
-        text3: 'In the 1950s, as transistor radios imported from the United States replaced the radio business, we began to transform and develop chromatographs for measuring impurities in argon gas for welding. These chromatographs were equipped with detectors using high-frequency discharge and served steel mills in the Liège region of Belgium.',
-        text4: 'Our product range gradually expanded to include high-purity detectors for industrial and laboratory applications. We played a "pioneering role" in this field and further expanded our product range by developing proprietary analytical software and engineering departments.',
+      heroSubtitle: 'Expert in High-Purity Gas Analysis Solutions',
+      historySection: {
+        title: 'Company Profile',
+        text1: 'Shanghai FICUS Technology (established in 2021) is a national high-tech enterprise focusing on the high-purity gas analysis field, dedicated to providing full-process gas quality monitoring and management solutions for high-end manufacturing such as semiconductors and LCD panels.',
+        text2: 'We adhere to the principle of "using precision analysis technology to protect the lifeline of China\'s intelligent manufacturing," building a complete technical ecosystem from gas impurity detection, system integration to data services.',
+        text3: '"Not ending with equipment sales, but measuring by customer yield"',
+        text4: 'Through technical penetration and service resilience, becoming a silent but crucial quality cornerstone in the electronics industry chain.',
         imageText: 'Company Development History'
+      },
+      whyChooseUs: {
+        title: 'Why Choose Us',
+        painTitle: 'Facing Trillion-level Industry Pain Points',
+        painDesc: '1ppb impurity in electronic-grade gas = million-level loss!',
+        solutionTitle: 'We solve:',
+        solutions: [
+          'Yield drop caused by gas contamination',
+          'Production interruption leading to capacity stagnation',
+          'Responsibility blind spots due to lack of traceability'
+        ]
       },
       missionSection: {
         title: 'Our Mission',
@@ -718,134 +682,71 @@ const translations = {
         intlDirectorDesc: 'Responsible for global market expansion and customer relationship management, with extensive international trade experience.'
       },
       globalSection: {
-        title: 'Global Business',
-        description: 'FICUS products and services cover multiple countries and regions worldwide, providing high-quality gas analysis solutions to global customers through an extensive distribution network.',
-        asia: 'Asia',
-        asiaCount: '6 countries',
-        europe: 'Europe',
-        europeCount: '9 countries',
-        northAmerica: 'North America',
-        northAmericaCount: '3 countries',
-        others: 'Other Regions',
-        othersCount: '3 countries'
+        title: 'National Business',
+        description: 'FICUS products and services cover major semiconductor industry clusters across China, providing high-quality gas analysis solutions to domestic high-end manufacturing through a comprehensive service network.',
+        regions: [
+          {
+            name: 'Yangtze River Delta',
+            cities: 'Shanghai, Suzhou, Wuxi, Nanjing',
+            description: 'IC industry cluster centered on Zhangjiang and Suzhou Industrial Park'
+          },
+          {
+            name: 'Pearl River Delta',
+            cities: 'Shenzhen, Guangzhou, Dongguan',
+            description: 'Electronics industry belt centered on Shenzhen and Guangzhou'
+          },
+          {
+            name: 'Beijing-Tianjin-Hebei',
+            cities: 'Beijing, Tianjin, Shijiazhuang',
+            description: 'Technology innovation belt centered on Beijing E-Town and Tianjin Binhai'
+          },
+          {
+            name: 'Central & Western',
+            cities: 'Wuhan, Chengdu, Chongqing, Xi\'an',
+            description: 'Industry innovation bases centered on Wuhan Optics Valley and Chengdu Hi-Tech Zone'
+          }
+        ]
       },
       ctaSection: {
         title: 'Join FICUS Global Partner Network',
         subtitle: 'Whether you are looking for gas analysis solutions or hoping to become our distribution partner, we look forward to cooperating with you.',
         contact: 'Contact Us'
-      }    },
-    // Contact Page
-    contact: {
-      hero: {
-        title: 'Contact Us',
-        subtitle: 'Whether you have any questions or needs, our team is ready to provide help and support at any time.'
-      },
-      info: {
-        title: 'Contact Information',
-        headquarters: 'Headquarters',
-        address1: 'Zhangjiang Hi-Tech Park, Pudong New Area, Shanghai',
-        address2: 'Technology Avenue 123',
-        postal: 'Postal Code: 201203',
-        phoneTitle: 'Phone',
-        phone: 'Phone: +86 21 5888 XXXX',
-        fax: 'Fax: +86 21 5888 XXXX',
-        emailTitle: 'Email',
-        generalEmail: 'General Inquiry: info@ficus-tech.com',
-        salesEmail: 'Sales Inquiry: sales@ficus-tech.com',
-        supportEmail: 'Technical Support: support@ficus-tech.com',
-        hoursTitle: 'Business Hours',
-        weekdays: 'Monday to Friday: 9:00 - 18:00',
-        weekends: 'Saturday, Sunday: Closed'
-      },      form: {
-        title: 'Contact Form',
-        name: 'Name *',
-        email: 'Email *',
-        phone: 'Phone',
-        company: 'Company',
-        subject: 'Subject *',
-        selectSubject: 'Please select...',
-        generalInquiry: 'General Inquiry',
-        productInquiry: 'Product Inquiry',
-        technicalSupport: 'Technical Support',
-        partnership: 'Partnership',
-        other: 'Other',
-        message: 'Message *',
-        privacyAgreement1: 'I have read and agree to the ',
-        privacyPolicy: 'Privacy Policy',
-        privacyAgreement2: ', and agree to the processing of my personal data.',
-        privacyRequired: 'Please agree to the privacy policy before submitting the form',
-        submit: 'Submit'
-      },
-      // 补全en中缺失的key，内容用英文占位
-      offices: {
-        title: 'Global Offices',
-        china: 'China - Shanghai (Headquarters)',
-        chinaAddress: 'Zhangjiang Hi-Tech Park, Pudong New Area, Shanghai',
-        chinaPhone: 'Phone: +86 21 5888 XXXX',
-        chinaEmail: 'Email: china@ficus-tech.com',
-        europe: 'Europe - Germany',
-        europeAddress: 'Munich Technology Park',
-        europePhone: 'Phone: +49 89 XXXX XXXX',
-        europeEmail: 'Email: europe@ficus-tech.com',
-        usa: 'North America - USA',
-        usaAddress: 'San Jose, California',
-        usaPhone: 'Phone: +1 408 XXX XXXX',
-        usaEmail: 'Email: usa@ficus-tech.com'
-      },
-      map: {
-        title: 'Our Location',
-        placeholder: 'Map will be displayed here'
-      },
-      faq: {
-        title: 'Frequently Asked Questions',
-        question1: 'How to get product quotes?',
-        answer1: 'You can get product quotes by filling out the contact form above and selecting "Product Inquiry" as the subject, or by sending an email directly to sales@ficus-tech.com. Our sales team will reply within 24 hours.',
-        question2: 'How to get technical support?',
-        answer2: 'For customers who have purchased our products, you can get technical support by calling +86 21 5888 XXXX or sending an email to support@ficus-tech.com. Please provide your device serial number and detailed problem description so we can better serve you.',
-        question3: 'How to become a FICUS distribution partner?',
-        answer3: 'If you are interested in becoming a FICUS distribution partner, please send an email to partnership@ficus-tech.com, explaining your company information, business scope, and cooperation intentions. Our business development team will contact you to discuss cooperation details.'
-      },
-      cta: {
-        title: 'Ready to Start Your Project?',
-        subtitle: 'Whether you need standard products or custom solutions, we can meet your needs. Contact us now to start your project.',
-        callNow: 'Call Now',
-        sendEmail: 'Send Email'
       }
     },
     // Equipment Page
     equipment: {
       hero: {
         title: 'Equipment',
-        subtitle: 'Our team excels in manufacturing equipment that meets the highest industry standards, ensuring precision and quality.'
+        subtitle: 'FICUS provides comprehensive gas analysis equipment, from standard analyzers to custom systems, meeting various industrial and laboratory application needs.'
       },
       overview: {
         title: 'Equipment Overview',
-        description: 'FICUS provides comprehensive gas analysis solutions, from standard analyzers to custom systems, meeting various industrial and laboratory application needs. Our equipment uses the latest technology to ensure high precision, reliability, and ease of use.',
+        description: 'FICUS gas analysis equipment uses the latest technology to ensure high precision, reliability, and ease of use. Our product line covers various gas water, oxygen, particle analyzers, chromatographs, CQC, IQC integration design and manufacturing.',
         productLine: 'Our product line includes:',
         product1: 'Gas Chromatographs',
-        product2: 'Gas Purity Analyzers', 
-        product3: 'Online Monitoring Systems',
-        product4: 'Portable Analysis Equipment',
+        product2: 'Gas Purity Analyzers',
+        product3: 'IQC System and Analysis Cabin Integration',
+        product4: 'CQC Project Integration',
         product5: 'Custom Analysis Solutions',
-        quality: 'All equipment is designed and manufactured by our professional team to ensure every product meets the highest quality standards.',
+        quality: 'All integration is designed and manufactured by our professional team to ensure each product meets the highest quality standards.',
         imageText: 'Equipment Overview'
       },
       products: {
         title: 'Featured Products',
         getDetails: 'Get Details',
         product1: {
-          name: 'GC-2000 Gas Chromatograph',
-          description: 'GC-2000 is our flagship product, providing high-precision gas analysis for industrial and laboratory applications. This equipment uses advanced detection technology to analyze various gas components and meet various application needs.',
+          name: 'Water-Oxygen-Particle Analysis Series',
+          description: 'Can continuously monitor the content of H2O, O2, particles and other impurities in bulk gases, with detection limits as low as ppt level. Particles have 8 channels: 0.1um, 0.2um, 0.3um, 0.5um, 1.0um, 2.0um, 3.0um, 5.0um.',
           featuresTitle: 'Key Features:',
-          feature1: 'High-precision detection with ppb-level analysis capability',
+          feature1: 'ppb-level high-precision detection',
           feature2: 'Multi-channel simultaneous analysis',
           feature3: 'User-friendly operation interface',
           feature4: 'Automatic calibration function',
           feature5: 'Data storage and remote access'
         },
         product2: {
-          name: 'PurityPro Gas Purity Analyzer',
-          description: 'PurityPro is specifically designed for high-purity gas analysis, capable of rapidly detecting trace impurities to ensure gas purity meets industry standards. This equipment is widely used in semiconductor, pharmaceutical, and food industries.',
+          name: 'Chromatography Analysis Series',
+          description: 'Applied to continuous measurement of H2, CO, CO2, CH4, NMHC, N2, Ar and other impurities in bulk gases, with detection limits <0.5ppb.',
           featuresTitle: 'Key Features:',
           feature1: 'Fast response time',
           feature2: 'High sensitivity detection',
@@ -854,8 +755,8 @@ const translations = {
           feature5: 'Intuitive touchscreen interface'
         },
         product3: {
-          name: 'MonitorX Online Monitoring System',
-          description: 'MonitorX provides continuous gas monitoring solutions suitable for industrial production lines and environmental monitoring. This system can work 24/7 continuously, providing real-time data and alarm functions.',
+          name: 'CQC Integration and IQC Cabin Project Integration',
+          description: 'MonitorX provides continuous gas monitoring solutions suitable for industrial production lines and environmental monitoring. The system can work 24/7 continuously, providing real-time data and alarm functions.',
           featuresTitle: 'Key Features:',
           feature1: 'Continuous monitoring capability',
           feature2: 'Remote data access',
@@ -891,120 +792,103 @@ const translations = {
         title: 'Looking for Equipment That Fits Your Needs?',
         subtitle: 'Contact our expert team for product information and technical consultation.',
         button: 'Contact Us'
+      },
+      authorizationSection: {
+        title: 'Authorization Certificates',
+        desc: [
+          'PEAK Laboratory Authorization Letter',
+          'Photonics Technologies Authorization Letter'
+        ],
+        images: [
+          '/certs/auth-peak.jpg',
+          '/certs/auth-photonics.jpg'
+        ]
       }
-    },    // Applications Page  
+    },
+    // Applications Page
     applications: {
-      heroTitle: '应用',
-      heroSubtitle: 'FICUS的气体分析解决方案广泛应用于多个行业，为客户提供精确、可靠的分析结果。',
-      overview: {
-        title: '应用概览',
-        description: 'FICUS的产品和服务在多个行业和应用场景中发挥着重要作用。我们为不同行业的特殊需求提供定制化解决方案。',
-        fieldsList: '我们的解决方案已成功应用于以下领域：',
-        field1: '工业气体生产',
-        field2: '半导体制造',
-        field3: '医药与生物技术',
-        field4: '环境监测',
-        field5: '科研与实验室',
-        field6: '石油化工',
-        conclusion: '每个行业都有其特定的挑战和需求，我们的专业团队与客户紧密合作，提供量身定制的解决方案。'
-      },
-      industrialGas: {
-        title: '工业气体',
-        description1: 'FICUS为工业气体生产商提供高精度分析解决方案，确保产品质量和安全性。我们的设备可检测多种工业气体中的微量杂质，满足最严格的纯度要求。',
-        description2: '主要应用包括：',
-        application1: '高纯气体质量控制',
-        application2: '混合气体成分分析',
-        application3: '生产过程监控',
-        application4: '储运安全监测',
-        application5: '认证与合规检测',
-        description3: '我们的解决方案帮助工业气体生产商确保产品符合行业标准和客户要求，提高生产效率和产品质量。'
-      },
-      semiconductor: {
-        title: '半导体制造',
-        description1: '半导体制造对气体纯度有极高要求，微量杂质可能导致产品缺陷和良率下降。FICUS高精度分析设备可检测ppb甚至ppt级别的杂质，保障生产环境和工艺气体的纯净。',
-        description2: '主要应用包括：',
-        application1: '超高纯气体纯度验证',
-        application2: '工艺气体监测',
-        application3: '洁净室环境监控',
-        application4: '排放气体分析',
-        application5: '泄漏检测',
-        description3: '我们的解决方案帮助半导体制造商提升产品质量，减少缺陷，优化生产流程。'
-      },
-      pharmaceutical: {
-        title: '医药与生物技术',
-        description1: '医药和生物技术行业需要精确的气体分析以确保产品质量和生产环境安全。FICUS的解决方案帮助客户满足严格的监管要求和质量标准。',
-        description2: '主要应用包括：',
-        application1: '医用气体纯度检测',
-        application2: '发酵过程监测',
-        application3: '无菌环境监控',
-        application4: '包装气体分析',
-        application5: '研发实验室分析',
-        description3: '我们的解决方案帮助医药和生物技术企业确保产品安全和质量，符合GMP等监管要求。'
-      },
-      environmental: {
-        title: '环境监测',
-        description1: '环境保护日益重要，准确的气体分析对于监测空气质量、排放控制和合规验证至关重要。FICUS提供可靠的环境监测解决方案，帮助客户满足环保要求。',
-        description2: '主要应用包括：',
-        application1: '工业排放监测',
-        application2: '环境空气质量分析',
-        application3: '温室气体监测',
-        application4: '有害气体检测',
-        application5: '合规验证和报告',
-        description3: '我们的解决方案帮助企业和机构监测和控制环境影响，满足日益严格的环保法规要求。'
-      },
-      research: {
-        title: '科研与实验室',
-        description1: '科研机构和实验室需要高精度的气体分析设备来支持各类研究项目和实验。FICUS提供灵活、精确的分析解决方案，满足科研需求。',
-        description2: '主要应用包括：',
-        application1: '材料研究',
-        application2: '催化剂开发',
-        application3: '环境研究',
-        application4: '生物医学研究',
-        application5: '教学与培训',
-        description3: '我们的解决方案为科研人员提供可靠的分析工具，支持科学发现和技术创新。'
+      hero: {
+        title: 'Applications',
+        subtitle: 'FICUS gas analysis solutions are widely used in multiple industries, providing customers with precise and reliable analysis results.'
       },
       caseStudies: {
-        title: '成功案例',
+        title: 'Case Studies',
         case1: {
-          title: '大型工业气体生产商',
-          challenge: '挑战：需要提升高纯氩气生产线的质量控制能力，降低产品不合格率。',
-          solution: '解决方案：FICUS提供了定制的在线监测系统，实时分析生产过程中的气体纯度，并与控制系统集成。',
-          result: '结果：产品不合格率降低85%，生产效率提升30%，客户满意度显著提升。'
+          title: 'A Major Industrial Gas Producer',
+          challenge: 'Challenge: Needed to improve the quality control capability of the high-purity argon production line and reduce the defect rate.',
+          solution: 'Solution: FICUS provided a customized online monitoring system to analyze gas purity in real time and integrate with the control system.',
+          result: 'Result: Defect rate reduced by 85%, production efficiency increased by 30%, and customer satisfaction significantly improved.'
         },
         case2: {
-          title: '领先半导体制造商',
-          challenge: '挑战：需要更精确地监测生产环境中的微量杂质气体，提高产品良率。',
-          solution: '解决方案：FICUS提供了高灵敏度的多点监测系统，可检测ppt级别的关键杂质。',
-          result: '结果：产品良率提升5%，每年节省数百万美元成本，设备投资6个月内回收。'
+          title: 'A Leading Semiconductor Manufacturer',
+          challenge: 'Challenge: Trace impurities in the production process led to a decrease in chip yield, requiring enhanced gas purity monitoring capability.',
+          solution: 'Solution: FICUS deployed high-sensitivity trace analyzers for real-time monitoring of key process gases.',
+          result: 'Result: Chip yield increased by 12%, production process became more controllable, and customer trust was enhanced.'
         }
       },
       ctaSection: {
-        title: '寻找适合您行业的解决方案？',
-        subtitle: '联系我们的应用专家，获取针对您特定需求的建议和方案。',
-        contact: '联系我们'
+        title: 'Looking for Solutions for Your Industry?',
+        subtitle: 'Contact our application experts for advice and solutions tailored to your specific needs.',
+        contact: 'Contact Us'
+      },
+      customersTable: {
+        title: 'Customers',
+        headers: ['Customer Name', 'Product'],
+        data: [
+          ['Wuxi Huarun Microelectronics', 'CQC System Integration & Instruments'],
+          ['Guangzhou Xinrui Photomask Technology', 'CQC System Integration & Instruments'],
+          ['Shanghai IC Materials Research Institute', 'CQC System Integration & Instruments'],
+          ['Wuxi Xiandao Semiconductor Materials', 'CQC System Integration & Instruments'],
+          ['Shanghai Jiading Optical Communication Project', 'CQC System Integration & Instruments'],
+          ['Tianjin Zhonghuan Semiconductor', 'CQC System Integration & Instruments'],
+          ['Xiamen Silan Macro SiC Project', 'CQC System Integration & Instruments'],
+          ['Jiangsu Haogan Technology SiC Project', 'CQC System Integration & Instruments'],
+          ['Shanghai Xinao Technology', 'Instruments & Analysis Service'],
+          ['Jiaxing Jingfeng Xinzhu Semiconductor', 'Instruments & Analysis Service'],
+          ['Zhongke Fuhai', 'IQC Analysis Cabin & Instruments'],
+          ['Guanggang Gas', 'CQC System Integration & IQC Integration'],
+          ['Dalian Zhongding Chemical', 'Instruments & Service'],
+          ['Shandong Heyi Gas', 'Pretreatment System & Instruments'],
+          ['Dalian Huabang Chemical', 'Instruments & Pretreatment System'],
+          ['Hubei Jiunen Intelligent Technology', 'CQC System & Instruments'],
+          ['Zhijia Gas', 'CQC System Integration & Instrument Service'],
+          ['Inner Mongolia Guangneng Technology', 'Pretreatment System'],
+          ['Shanghai Qiyuan Gas', 'CQC System & Instruments'],
+          ['San Aifu', 'Analysis Cabin & Instruments'],
+          ['Jiangsu Jiufeng', 'IQC System Integration & Instruments'],
+          ['Zhejiang Zhongning', 'Analysis Cabin & Instruments'],
+          ['Huaian Leishuo Electronic Materials', 'Analysis Cabin & Instruments'],
+          ['China Electronics System Engineering 2nd Construction', 'CQC System Integration & Instruments'],
+          ['Liaoning Huisheng Electromechanical', 'CQC System Integration & Instruments'],
+          ['Shanghai Feixiang Electromechanical', 'CQC System Integration & Instruments'],
+          ['Horuid Electronics (Shanghai)', 'CQC System Integration & Instruments'],
+          ['Wuxi Hongfeng Electromechanical Installation', 'Instruments & Service'],
+          ['Shanghai Haogu Machinery', 'Instruments & Service'],
+          ['Suzhou Meisijia Electromechanical', 'Instruments & Service'],
+          ['Shanghai Xiran Electronic System Engineering', 'Instruments & Service']
+        ]
       }
     },
     // Services Page
     services: {
       hero: {
         title: 'Services',
-        subtitle: 'FICUS provides comprehensive service support to ensure customers get the best user experience and return on investment.'
+        subtitle: 'FICUS provides comprehensive service support, from product consultation to technical support, ensuring customers get the best user experience and return on investment.'
       },
       overviewSection: {
         title: 'Service Overview',
-        description: 'FICUS not only provides high-quality gas analysis equipment, but also provides comprehensive technical support and services to ensure that customers get the best user experience and analysis results. Our service team consists of experienced professionals who are always available to provide support and assistance to customers.',
+        description: 'FICUS is committed to providing full lifecycle service support to customers, from product selection, installation and commissioning to maintenance and upgrades. Our professional team always provides quality service.',
         services: 'Our services include:',
-        service1: 'Installation and commissioning',
-        service2: 'Training and technical support',
-        service3: 'Maintenance and calibration',
-        service4: 'Upgrades and updates',
-        service5: 'Remote diagnosis and support',
-        service6: 'Custom development services',
-        conclusion: 'No matter where you are, FICUS can provide timely and professional services to ensure that your equipment is always in optimal condition.'
+        service1: 'Product consultation and selection',
+        service2: 'Installation and commissioning',
+        service3: 'Training and technical support',
+        service4: 'Maintenance and calibration',
+        service5: 'Upgrades and updates',
+        service6: 'Custom development services'
       },
       installation: {
-        title: 'Installation & Commissioning',
-        description: 'FICUS provides professional installation and commissioning services to ensure that equipment is properly installed and achieves optimal performance. Our technicians will develop detailed installation plans based on your specific needs and environmental conditions, and provide guidance and support throughout the installation process.',
+        title: 'Installation and Commissioning',
+        description: 'FICUS provides professional installation and commissioning services to ensure equipment is properly installed and achieves optimal performance. Our technicians will develop detailed installation plans based on your specific needs and environmental conditions, and provide guidance and support throughout the installation process.',
         services: 'Our installation and commissioning services include:',
         service1: 'Site survey and assessment',
         service2: 'Pre-installation preparation and planning',
@@ -1015,7 +899,7 @@ const translations = {
         goal: 'Our goal is to ensure that the equipment works properly from the beginning and meets expected performance requirements.'
       },
       training: {
-        title: 'Training & Technical Support',
+        title: 'Training and Technical Support',
         description: 'FICUS provides comprehensive training and technical support to help users fully understand and master equipment operation and maintenance. Our training courses are taught by experienced professionals and cover equipment operation, data analysis, troubleshooting and other aspects.',
         services: 'Our training and technical support services include:',
         service1: 'On-site operation training',
@@ -1027,7 +911,7 @@ const translations = {
         support: 'Our technical support team is always ready to answer your questions and provide professional advice and assistance.'
       },
       maintenance: {
-        title: 'Maintenance & Calibration',
+        title: 'Maintenance and Calibration',
         description: 'Regular maintenance and calibration are key to ensuring long-term stable operation of equipment and providing accurate analysis results. FICUS provides professional maintenance and calibration services to help customers maintain optimal equipment condition and performance.',
         services: 'Our maintenance and calibration services include:',
         service1: 'Preventive maintenance plans',
@@ -1039,7 +923,7 @@ const translations = {
         flexibility: 'We provide flexible maintenance plans that can be customized according to customers\' specific needs and usage conditions.'
       },
       upgrades: {
-        title: 'Upgrades & Updates',
+        title: 'Upgrades and Updates',
         description: 'With the continuous development and progress of technology, FICUS continues to provide equipment and software upgrade and update services to help customers maintain technological leadership and improve equipment performance and functionality.',
         services: 'Our upgrade and update services include:',
         service1: 'Hardware upgrades and extensions',
@@ -1066,16 +950,16 @@ const translations = {
         title: 'Service Plans',
         basic: {
           title: 'Basic Service',
-          description: 'Standard service plan for basic needs',
-          feature1: 'Phone and email technical support',
-          feature2: 'Software updates',
-          feature3: 'Annual maintenance inspection',
-          feature4: 'Basic training',
+          description: 'Suitable for users with basic needs',
+          feature1: 'Phone technical support',
+          feature2: 'Online documentation access',
+          feature3: 'Software updates',
+          feature4: 'Basic training materials',
           contact: 'Learn More'
         },
         advanced: {
-          title: 'Advanced Service',
-          description: 'Comprehensive service plan that meets most needs',
+          title: 'Professional Service',
+          description: 'Suitable for professional users and small to medium enterprises',
           badge: 'Recommended',
           feature1: '24/7 technical support',
           feature2: 'Priority response',
@@ -1096,140 +980,136 @@ const translations = {
         }
       },
       ctaSection: {
-        title: 'Need Technical Support or Services?',
-        subtitle: 'Contact our service team for professional technical support and services.',
+        title: 'Need Professional Service Support?',
+        subtitle: 'Contact our service team for service plans that meet your needs.',
         contact: 'Contact Us'
       }
     },
-    // Technologies Page
-    technologies: {
+    // Contact Page
+    contact: {
       hero: {
-        title: 'Technologies',
-        subtitle: 'FICUS innovative technology sets new standards in the field of gas analysis, providing higher precision and more reliable analysis results.'
-      },      coreSection: {
-        title: 'Core Technologies',
-        description1: 'FICUS has multiple core technologies in the field of gas analysis, which are the foundation of our product performance and reliability. We continue to invest in research and development, continuously improve our technical level, and provide customers with better solutions.',
-        description2: 'Our core technologies include:',
-        tech1: 'High-frequency discharge detection technology',
-        tech2: 'Trace impurity analysis technology',
-        tech3: 'Multi-component simultaneous analysis technology',
-        tech4: 'Automatic calibration system',
-        tech5: 'Intelligent data processing algorithms',
-        description3: 'These technologies enable our products to provide higher accuracy and more reliable analysis results, meeting customers\' most stringent requirements.',
-        visualTitle: 'Core Technologies',
-        visualSubtitle: 'Innovation-driven, technology-leading'
+        title: 'Contact Us',
+        subtitle: 'Our professional team is ready to provide support and service at any time. Welcome to contact us for more information.'
       },
-      detectionSection: {
-        title: 'Detection Technology',
-        description1: 'FICUS detection technology is the core of our products. We have developed multiple high-performance detectors suitable for different gas analysis needs.',
-        description2: 'Our main detection technologies include:',
-        hdd: 'High-frequency Discharge Detector (HDD): Suitable for detection of trace impurities in high-purity gases, with sensitivity up to ppb level',
-        tcd: 'Thermal Conductivity Detector (TCD): Widely used for analysis of various gas components, stable and reliable',
-        fid: 'Flame Ionization Detector (FID): Suitable for high-sensitivity detection of organic compounds',
-        pdd: 'Pulsed Discharge Detector (PDD): Provides wide linear range and high sensitivity, suitable for various gas analyses',
-        ecd: 'Electrochemical Detector (ECD): Has extremely high selectivity and sensitivity for specific gases',
-        description3: 'We select the most suitable detection technology based on customers\' specific needs to ensure accuracy and reliability of analysis results.'
+      info: {
+        title: 'Contact Information',
+        headquarters: 'Headquarters Address',
+        address1: 'Building 11, 101, Tianhua AI Innovation Park, Shanghai',
+        address2: 'No. 1585 Chengbei Road, Jiading District, Shanghai, China',
+        postal: '201800',
+        phoneTitle: 'Phone',
+        phone: '+86 18915970248',
+        fax: 'Fax: +86 21 1234 5679',
+        emailTitle: 'Email',
+        generalEmail: 'General Inquiry: info@ficus.com',
+        salesEmail: 'Sales Inquiry: sales@ficus.com',
+        supportEmail: 'Technical Support: support@ficus.com',
+        hoursTitle: 'Business Hours',
+        weekdays: 'Monday to Friday: 9:00 - 18:00',
+        weekends: 'Weekends: 10:00 - 16:00'
       },
-      softwareSection: {
-        title: 'Software & Data Analysis',
-        description1: 'FICUS has developed advanced analysis software that provides users with intuitive operating interfaces and powerful data processing capabilities. Our software not only controls equipment operation but also provides comprehensive data analysis and reporting functions.',
-        description2: 'Our software features include:',
-        feature1: 'User-friendly graphical interface',
-        feature2: 'Real-time data display and processing',
-        feature3: 'Automatic peak identification and quantitative analysis',
-        feature4: 'Multiple data export formats',
-        feature5: 'Custom report generation',
-        feature6: 'Remote access and control',
-        feature7: 'Secure data storage and backup',
-        description3: 'Our software is continuously updated and optimized to ensure users get the best user experience and analysis results.'
+      form: {
+        title: 'Contact Form',
+        name: 'Name *',
+        email: 'Email *',
+        phone: 'Phone',
+        company: 'Company',
+        subject: 'Subject *',
+        selectSubject: 'Please select...',
+        generalInquiry: 'General Inquiry',
+        productInquiry: 'Product Inquiry',
+        technicalSupport: 'Technical Support',
+        partnership: 'Partnership',
+        other: 'Other',
+        message: 'Message *',
+        privacyAgreement1: 'I have read and agree to the ',
+        privacyPolicy: 'Privacy Policy',
+        privacyAgreement2: ', and agree to the processing of my personal data.',
+        privacyRequired: 'Please agree to the privacy policy before submitting the form',
+        submit: 'Submit'
       },
-      innovationSection: {
-        title: 'Innovation & R&D',
-        description1: 'FICUS attaches great importance to technological innovation and R&D investment. Our R&D team continuously explores new technologies and methods to improve product performance and user experience.',
-        description2: 'Our R&D focus includes:',
-        focus1: 'Improving detection sensitivity and accuracy',
-        focus2: 'Expanding analysis range and application areas',
-        focus3: 'Simplifying operation processes and improving user experience',
-        focus4: 'Enhancing data processing and analysis capabilities',
-        focus5: 'Developing new detection technologies and methods',
-        description3: 'We work closely with research institutions and industry partners to jointly promote the development and innovation of gas analysis technology.'
-      },
-      comparisonSection: {
-        title: 'Technology Comparison',
-        headers: {
-          technology: 'Detection Technology',
-          sensitivity: 'Sensitivity',
-          range: 'Linear Range',
-          selectivity: 'Selectivity',
-          application: 'Main Applications'
+      departments: {
+        title: 'Department Contact Information',
+        sales: {
+          title: 'Sales Inquiry',
+          description: 'Product inquiry, quotation and sales support',
+          email: 'sales@ficus.com',
+          phone: '+86 21 1234 5678'
         },
-        hdd: {
-          name: 'High-frequency Discharge Detector (HDD)',
-          sensitivity: 'ppb level',
-          range: '10⁵',
-          selectivity: 'High',
-          application: 'High-purity gas analysis'
+        support: {
+          title: 'Technical Support',
+          description: 'Technical issues, troubleshooting and product support',
+          email: 'support@ficus.com',
+          phone: '+86 21 1234 5679'
         },
-        tcd: {
-          name: 'Thermal Conductivity Detector (TCD)',
-          sensitivity: 'ppm level',
-          range: '10⁴',
-          selectivity: 'Medium',
-          application: 'General gas analysis'
-        },
-        fid: {
-          name: 'Flame Ionization Detector (FID)',
-          sensitivity: 'ppb level',
-          range: '10⁷',
-          selectivity: 'High',
-          application: 'Organic compound analysis'
-        },
-        pdd: {
-          name: 'Pulsed Discharge Detector (PDD)',
-          sensitivity: 'ppb level',
-          range: '10⁶',
-          selectivity: 'High',
-          application: 'Multi-component gas analysis'
-        },
-        ecd: {
-          name: 'Electrochemical Detector (ECD)',
-          sensitivity: 'ppt level',
-          range: '10³',
-          selectivity: 'Very High',
-          application: 'Specific gas detection'
+        partnership: {
+          title: 'Partnership',
+          description: 'Distribution cooperation, agent application and business cooperation',
+          email: 'partner@ficus.com',
+          phone: '+86 21 1234 5680'
         }
       },
-      patentsSection: {
-        title: 'Patents & Intellectual Property',
-        description: 'FICUS attaches great importance to intellectual property protection and has multiple gas analysis technology patents, which are important guarantees for our technological innovation and market competitiveness.',
-        detection: {
-          title: 'Detection Technology Patents',
-          description: 'Including multiple patents such as high-frequency discharge detectors and pulsed discharge technology, improving detection accuracy and reliability.'
-        },
-        dataProcessing: {
-          title: 'Data Processing Patents',
-          description: 'Including patents for intelligent algorithms and automatic calibration systems, improving data processing efficiency and accuracy.'
-        },
-        systemIntegration: {
-          title: 'System Integration Patents',
-          description: 'Including patents for modular design and automated control, improving system performance and user experience.'
-        }
+      offices: {
+        title: 'Global Offices',
+        china: 'China - Shanghai (Headquarters)',
+        chinaAddress: 'Zhangjiang Hi-Tech Park, Pudong New Area, Shanghai',
+        chinaPhone: 'Phone: +86 21 5888 XXXX',
+        chinaEmail: 'Email: china@ficus-tech.com',
+        europe: 'Europe - Germany',
+        europeAddress: 'Munich Technology Park',
+        europePhone: 'Phone: +49 89 XXXX XXXX',
+        europeEmail: 'Email: europe@ficus-tech.com',
+        usa: 'North America - USA',
+        usaAddress: 'San Jose, California',
+        usaPhone: 'Phone: +1 408 XXX XXXX',
+        usaEmail: 'Email: usa@ficus-tech.com'
       },
-      ctaSection: {
-        title: 'Want to Learn More About Our Technology?',
-        subtitle: 'Contact our technical experts for more detailed information and application recommendations about FICUS technology.',
-        contact: 'Contact Us'
+      map: {
+        title: 'Our Location',
+        addressTitle: 'Company Address',
+        address: 'No. 1585 Chengbei Road, Jiading District, Shanghai, China',
+        address2: 'Building 11, 101, Tianhua AI Innovation Park, Shanghai',
+        trafficTitle: 'Transportation Guide',
+        trafficList: [
+          'Metro Line 11: Jiading West Station, about 2km',
+          'Metro Line 14: Taopu Xincun Station, about 8km',
+          'By car: Hujia Expressway → Chengbei Road Exit'
+        ],
+        placeholder: 'Map will be displayed here'
+      },
+      faq: {
+        title: 'Frequently Asked Questions',
+        question1: 'How to get product quotes?',
+        answer1: 'You can get product quotes by filling out the contact form above and selecting "Product Inquiry" as the subject, or by sending an email directly to sales@ficus-tech.com. Our sales team will reply within 24 hours.',
+        question2: 'How to get technical support?',
+        answer2: 'For customers who have purchased our products, you can get technical support by calling +86 18915970248 or sending an email to sales@ficus-tech.com. Please provide your device serial number and detailed problem description so we can better serve you.',
+        question3: 'How to become a FICUS distribution partner?',
+        answer3: 'If you are interested in becoming a FICUS distribution partner, please send an email to sales@ficus-tech.com, explaining your company information, business scope, and cooperation intentions. Our business development team will contact you to discuss cooperation details.'
+      },
+      cta: {
+        title: 'Ready to Start Your Project?',
+        subtitle: 'Whether you need standard products or custom solutions, we can meet your needs. Contact us now to start your project.',
+        callNow: 'Call Now',
+        sendEmail: 'Send Email'
       }
     },
     // Footer
     footer: {
-      description: 'FICUS has been focusing on gas analysis technology for over 50 years, providing professional analytical solutions to customers worldwide.',
+      description: 'With precision analysis technology as the core, providing full lifecycle gas quality solutions for high-end manufacturing',
       quickLinks: 'Quick Links',
       contact: 'Contact Us',
-      address: 'Zhangjiang Hi-Tech Park, Pudong New Area, Shanghai',
-      phone: 'Phone: +86 21 1234 5678',
-      email: 'Email: info@ficus.com',
-      copyright: '© 2024 FICUS. All rights reserved.'
+      address: 'Address: Shanghai, China',
+      phone: 'Phone: +86 123 4567 8910',
+      email: 'Email: info@ficus-tech.com',
+      copyright: '© 2025 FICUS. All rights reserved.'
+    },
+    certificates: {
+      title: 'Safety Certificates',
+      images: [
+        '/certs/en-iso9001.jpg',
+        '/certs/en-iso45001.jpg',
+        '/certs/en-iso14001.jpg'
+      ]
     }
   }
 };
@@ -1256,8 +1136,18 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return typeof current === 'string' ? current : key;
   };
 
+  const getRaw = (key: string) => {
+    const keys = key.split('.');
+    let value: any = translations[language];
+    for (const k of keys) {
+      value = value?.[k];
+      if (value === undefined) break;
+    }
+    return value;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, getRaw }}>
       {children}
     </LanguageContext.Provider>
   );

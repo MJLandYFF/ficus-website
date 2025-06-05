@@ -4,7 +4,7 @@ import { addSubmission } from '../data/dataManager';
 import MapComponent from '../components/ui/MapComponent';
 
 const ContactPage = () => {
-  const { t } = useLanguage();
+  const { t, getRaw } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -104,14 +104,11 @@ const ContactPage = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-3">{t('contact.info.phoneTitle')}</h3>
                 <p className="text-gray-700 mb-2">{t('contact.info.phone')}</p>
-                <p className="text-gray-700 mb-2">{t('contact.info.fax')}</p>
               </div>
               
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-3">{t('contact.info.emailTitle')}</h3>
-                <p className="text-gray-700 mb-2">{t('contact.info.generalEmail')}</p>
-                <p className="text-gray-700 mb-2">{t('contact.info.salesEmail')}</p>
-                <p className="text-gray-700 mb-2">{t('contact.info.supportEmail')}</p>
+                <p className="text-gray-700 mb-2">联系邮箱：sales@ficus.com</p>
               </div>
               
               <div>
@@ -254,7 +251,7 @@ const ContactPage = () => {
       </section>
 
       {/* Global Offices */}
-      <section className="py-16 bg-gray-100">
+      {/* <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">{t('contact.offices.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -264,14 +261,12 @@ const ContactPage = () => {
               <p className="text-gray-700 mb-2">{t('contact.offices.chinaPhone')}</p>
               <p className="text-gray-700">{t('contact.offices.chinaEmail')}</p>
             </div>
-            
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3">{t('contact.offices.europe')}</h3>
               <p className="text-gray-700 mb-2">{t('contact.offices.europeAddress')}</p>
               <p className="text-gray-700 mb-2">{t('contact.offices.europePhone')}</p>
               <p className="text-gray-700">{t('contact.offices.europeEmail')}</p>
             </div>
-            
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-semibold mb-3">{t('contact.offices.usa')}</h3>
               <p className="text-gray-700 mb-2">{t('contact.offices.usaAddress')}</p>
@@ -280,7 +275,7 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Map Section */}
       <section className="py-16">
@@ -290,16 +285,16 @@ const ContactPage = () => {
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-800">📍 公司地址</h3>
+                  <h3 className="text-lg font-semibold mb-3 text-gray-800">{t('contact.map.addressTitle')}</h3>
                   <p className="text-gray-700 leading-relaxed">
-                    中国 上海市嘉定区城北路1585弄<br />
-                    上海天华人工智能科创园 11号楼101
+                    {t('contact.map.address')}<br />
+                    {t('contact.map.address2')}
                   </p>
-                  <h3 className="text-lg font-semibold mb-3 mt-6 text-gray-800">🚇 交通指引</h3>
+                  <h3 className="text-lg font-semibold mb-3 mt-6 text-gray-800">{t('contact.map.trafficTitle')}</h3>
                   <ul className="text-gray-700 space-y-1">
-                    <li>• 地铁11号线 嘉定西站 约2公里</li>
-                    <li>• 地铁14号线 桃浦新村站 约8公里</li>
-                    <li>• 自驾: 沪嘉高速 → 城北路出口</li>
+                    {getRaw('contact.map.trafficList').map((item: string, idx: number) => (
+                      <li key={idx}>• {item}</li>
+                    ))}
                   </ul>
                 </div>
                 <div>

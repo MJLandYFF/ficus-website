@@ -76,7 +76,6 @@ const Header = () => {
             <Link to="/about" className={getNavLinkClass("/about")}>{t('nav.about')}</Link>
             <Link to="/equipment" className={getNavLinkClass("/equipment")}>{t('nav.equipment')}</Link>
             <Link to="/applications" className={getNavLinkClass("/applications")}>{t('nav.applications')}</Link>
-            <Link to="/technologies" className={getNavLinkClass("/technologies")}>{t('nav.technologies')}</Link>
             <Link to="/services" className={getNavLinkClass("/services")}>{t('nav.services')}</Link>
             <Link to="/contact" className={getNavLinkClass("/contact")}>{t('nav.contact')}</Link>
           </nav>
@@ -136,7 +135,6 @@ const Header = () => {
             <Link to="/about" className={getMobileNavLinkClass("/about")} onClick={toggleMenu}>{t('nav.about')}</Link>
             <Link to="/equipment" className={getMobileNavLinkClass("/equipment")} onClick={toggleMenu}>{t('nav.equipment')}</Link>
             <Link to="/applications" className={getMobileNavLinkClass("/applications")} onClick={toggleMenu}>{t('nav.applications')}</Link>
-            <Link to="/technologies" className={getMobileNavLinkClass("/technologies")} onClick={toggleMenu}>{t('nav.technologies')}</Link>
             <Link to="/services" className={getMobileNavLinkClass("/services")} onClick={toggleMenu}>{t('nav.services')}</Link>
             <Link to="/contact" className={getMobileNavLinkClass("/contact")} onClick={toggleMenu}>{t('nav.contact')}</Link>
             

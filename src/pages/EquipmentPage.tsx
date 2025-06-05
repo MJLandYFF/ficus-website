@@ -1,7 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 
 const EquipmentPage = () => {
-  const { t } = useLanguage();
+  const { t, language, getRaw } = useLanguage();
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -40,13 +40,13 @@ const EquipmentPage = () => {
               </p>
             </div>
             <div className="md:w-1/2">
-              <div className="rounded-lg shadow-xl w-full h-80 bg-gradient-to-br from-gray-100 to-blue-100 flex items-center justify-center relative overflow-hidden">
+              <div className="rounded-lg shadow-xl w-full h-80 bg-gradient-to-br from-gray-100 to-blue-100 flex items-center justify-center relative overflow-hidden hidden md:block">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent"></div>
-                <div className="relative z-10 text-center">
-                  <svg className="w-24 h-24 mx-auto mb-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+                  <svg className="w-24 h-24 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
                   </svg>
-                  <p className="text-gray-600 font-medium">{t('equipment.overview.imageText')}</p>
+                  {/* <p className="text-gray-600 font-medium">{t('equipment.overview.imageText')}</p> */}
                 </div>
                 <div className="absolute top-4 right-4 w-16 h-16 bg-blue-200/30 rounded-full"></div>
                 <div className="absolute bottom-4 left-4 w-12 h-12 bg-yellow-200/30 rounded-full"></div>
@@ -63,33 +63,12 @@ const EquipmentPage = () => {
           
           {/* Product 1 */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2">
-                <div className="w-full h-80 bg-gradient-to-br from-blue-100 to-gray-100 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent"></div>
-                  <div className="relative z-10 text-center">
-                    <svg className="w-20 h-20 mx-auto mb-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                    </svg>
-                    <p className="text-gray-600 font-medium">{t('equipment.products.product1.name')}</p>
-                  </div>
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-blue-200/40 rounded-full"></div>
-                  <div className="absolute bottom-4 left-4 w-16 h-16 bg-yellow-200/30 rounded-full"></div>
-                </div>
-              </div>
-              <div className="md:w-1/2 p-8">
+            <div className="flex flex-col">
+              <div className="p-8">
                 <h3 className="text-2xl font-bold mb-4">{t('equipment.products.product1.name')}</h3>
                 <p className="text-gray-700 mb-4">
                   {t('equipment.products.product1.description')}
                 </p>
-                <h4 className="font-semibold text-lg mb-2">{t('equipment.products.product1.featuresTitle')}</h4>
-                <ul className="list-disc pl-5 mb-4 text-gray-700 space-y-1">
-                  <li>{t('equipment.products.product1.feature1')}</li>
-                  <li>{t('equipment.products.product1.feature2')}</li>
-                  <li>{t('equipment.products.product1.feature3')}</li>
-                  <li>{t('equipment.products.product1.feature4')}</li>
-                  <li>{t('equipment.products.product1.feature5')}</li>
-                </ul>
                 <a 
                   href="/contact" 
                   className="inline-block bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-md transition-colors"
@@ -102,33 +81,12 @@ const EquipmentPage = () => {
           
           {/* Product 2 */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="flex flex-col md:flex-row-reverse">
-              <div className="md:w-1/2">
-                <div className="w-full h-80 bg-gradient-to-br from-green-100 to-blue-100 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent"></div>
-                  <div className="relative z-10 text-center">
-                    <svg className="w-20 h-20 mx-auto mb-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-gray-600 font-medium">{t('equipment.products.product2.name')}</p>
-                  </div>
-                  <div className="absolute top-4 left-4 w-14 h-14 bg-green-200/40 rounded-full"></div>
-                  <div className="absolute bottom-4 right-4 w-12 h-12 bg-blue-200/30 rounded-full"></div>
-                </div>
-              </div>
-              <div className="md:w-1/2 p-8">
+            <div className="flex flex-col">
+              <div className="p-8">
                 <h3 className="text-2xl font-bold mb-4">{t('equipment.products.product2.name')}</h3>
                 <p className="text-gray-700 mb-4">
                   {t('equipment.products.product2.description')}
                 </p>
-                <h4 className="font-semibold text-lg mb-2">{t('equipment.products.product2.featuresTitle')}</h4>
-                <ul className="list-disc pl-5 mb-4 text-gray-700 space-y-1">
-                  <li>{t('equipment.products.product2.feature1')}</li>
-                  <li>{t('equipment.products.product2.feature2')}</li>
-                  <li>{t('equipment.products.product2.feature3')}</li>
-                  <li>{t('equipment.products.product2.feature4')}</li>
-                  <li>{t('equipment.products.product2.feature5')}</li>
-                </ul>
                 <a 
                   href="/contact" 
                   className="inline-block bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-md transition-colors"
@@ -140,34 +98,13 @@ const EquipmentPage = () => {
           </div>
           
           {/* Product 3 */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-1/2">
-                <div className="w-full h-80 bg-gradient-to-br from-purple-100 to-gray-100 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-transparent"></div>
-                  <div className="relative z-10 text-center">
-                    <svg className="w-20 h-20 mx-auto mb-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <p className="text-gray-600 font-medium">{t('equipment.products.product3.name')}</p>
-                  </div>
-                  <div className="absolute top-4 right-4 w-16 h-16 bg-purple-200/40 rounded-full"></div>
-                  <div className="absolute bottom-4 left-4 w-10 h-10 bg-yellow-200/30 rounded-full"></div>
-                </div>
-              </div>
-              <div className="md:w-1/2 p-8">
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+            <div className="flex flex-col">
+              <div className="p-8">
                 <h3 className="text-2xl font-bold mb-4">{t('equipment.products.product3.name')}</h3>
                 <p className="text-gray-700 mb-4">
                   {t('equipment.products.product3.description')}
                 </p>
-                <h4 className="font-semibold text-lg mb-2">{t('equipment.products.product3.featuresTitle')}</h4>
-                <ul className="list-disc pl-5 mb-4 text-gray-700 space-y-1">
-                  <li>{t('equipment.products.product3.feature1')}</li>
-                  <li>{t('equipment.products.product3.feature2')}</li>
-                  <li>{t('equipment.products.product3.feature3')}</li>
-                  <li>{t('equipment.products.product3.feature4')}</li>
-                  <li>{t('equipment.products.product3.feature5')}</li>
-                </ul>
                 <a 
                   href="/contact" 
                   className="inline-block bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-md transition-colors"
@@ -179,47 +116,48 @@ const EquipmentPage = () => {
           </div>
         </div>
       </section>
+      
+      
 
-      {/* Custom Solutions */}
+      {/* Certificates Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row-reverse items-start gap-12">
-            <div className="md:w-1/2">
-              <h2 className="text-3xl font-bold mb-6">{t('equipment.custom.title')}</h2>
-              <p className="text-gray-700 mb-4">
-                {t('equipment.custom.description')}
-              </p>
-              <p className="text-gray-700 mb-4">
-                {t('equipment.custom.services')}
-              </p>
-              <ul className="list-disc pl-5 mb-4 text-gray-700 space-y-2">
-                <li>{t('equipment.custom.service1')}</li>
-                <li>{t('equipment.custom.service2')}</li>
-                <li>{t('equipment.custom.service3')}</li>
-                <li>{t('equipment.custom.service4')}</li>
-                <li>{t('equipment.custom.service5')}</li>
-                <li>{t('equipment.custom.service6')}</li>
-              </ul>
-              <p className="text-gray-700">
-                {t('equipment.custom.conclusion')}
-              </p>
-            </div>
-            <div className="md:w-1/2">
-              <div className="rounded-lg shadow-xl w-full h-80 bg-gradient-to-br from-orange-100 to-yellow-100 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-transparent"></div>
-                <div className="relative z-10 text-center">
-                  <svg className="w-24 h-24 mx-auto mb-4 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gray-600 font-medium">{t('equipment.custom.imageText')}</p>
-                </div>
-                <div className="absolute top-6 right-6 w-14 h-14 bg-orange-200/40 rounded-full"></div>
-                <div className="absolute bottom-6 left-6 w-18 h-18 bg-yellow-200/30 rounded-full"></div>
-              </div>
-            </div>
+          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: 'var(--primary-color)' }}>
+            {t('certificates.title')}
+          </h2>
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+            {(getRaw('certificates.images') || []).map((img: string, idx: number) => (
+              <img
+                key={idx}
+                src={img}
+                alt={t('certificates.title') + (idx + 1)}
+                className="w-full max-w-xs rounded-lg shadow-lg border border-gray-200"
+              />
+            ))}
           </div>
         </div>
       </section>
+
+
+      {/* 授权证书 Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-center text-blue-900">{t('equipment.authorizationSection.title')}</h2>
+          <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
+            {getRaw('equipment.authorizationSection.images').map((img: string, idx: number) => (
+              <div key={idx} className="flex flex-col items-center">
+                <img
+                  src={img}
+                  alt={getRaw('equipment.authorizationSection.desc')[idx]}
+                  className="w-full max-w-xs rounded-lg shadow-lg border border-gray-200"
+                />
+                <p className="mt-2 text-gray-600 text-center text-sm">{getRaw('equipment.authorizationSection.desc')[idx]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Quality Assurance */}
       <section className="py-16 bg-gray-100">
