@@ -116,7 +116,7 @@ const EquipmentPage = () => {
           </div>
         </div>
       </section>
-      
+
       
 
       {/* Certificates Section */}
@@ -134,8 +134,8 @@ const EquipmentPage = () => {
                 className="w-full max-w-xs rounded-lg shadow-lg border border-gray-200"
               />
             ))}
-          </div>
-        </div>
+            </div>
+                </div>
       </section>
 
 

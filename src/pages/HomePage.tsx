@@ -7,7 +7,7 @@ const HomePage = () => {
   
   const advantages = getRaw('home.advantages') || [];
   const advantageTitles = getRaw('home.advantageTitles') || [];
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevCount) => (prevCount + 1) % 3);
@@ -85,10 +85,10 @@ const HomePage = () => {
                     <div key={i}>
                       <span className="font-semibold text-gray-900">{item.title}：</span>
                       {item.desc}
-                    </div>
+            </div>
                   ))}
-                </div>
-              </div>
+            </div>
+            </div>
             ))}
           </div>
         </div>
@@ -169,7 +169,7 @@ const HomePage = () => {
                 {/* 灯泡/方案图标 */}
                 <svg className="w-8 h-8 mb-2 text-orange-200 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 3.87-3.13 7-7 7s-7-3.13-7-7a7 7 0 017-7zm0 14v4m-4 0h8"/></svg>
                 <p className="text-base text-center font-medium text-white">{t('home.businessScope.solution')}</p>
-              </div>
+                </div>
               {/* 纯化器测试和管道五项测试 */}
               <div className="bg-gradient-to-br from-purple-900 to-purple-700 hover:from-purple-950 hover:to-purple-800 transition rounded-xl p-4 flex flex-col items-center w-40 h-32 shadow-lg group">
                 {/* 检测/盾牌图标 */}

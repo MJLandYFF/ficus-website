@@ -724,7 +724,7 @@ const translations = {
         description: 'FICUS gas analysis equipment uses the latest technology to ensure high precision, reliability, and ease of use. Our product line covers various gas water, oxygen, particle analyzers, chromatographs, CQC, IQC integration design and manufacturing.',
         productLine: 'Our product line includes:',
         product1: 'Gas Chromatographs',
-        product2: 'Gas Purity Analyzers',
+        product2: 'Gas Purity Analyzers', 
         product3: 'IQC System and Analysis Cabin Integration',
         product4: 'CQC Project Integration',
         product5: 'Custom Analysis Solutions',
