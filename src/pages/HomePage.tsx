@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const HomePage = () => {
-  const { t, language, getRaw } = useLanguage();
+  const { t, getRaw } = useLanguage();
   const [count, setCount] = useState(0);
   
   const advantages = getRaw('home.advantages') || [];

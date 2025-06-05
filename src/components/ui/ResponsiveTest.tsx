@@ -1,5 +1,5 @@
 // 添加一个简单的响应式测试组件
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const ResponsiveTest = () => {
   const [screenSize, setScreenSize] = useState('');

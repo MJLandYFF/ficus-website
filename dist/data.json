@@ -1,0 +1,41 @@
+{
+  "contactSubmissions": [
+    {
+      "id": "2",
+      "name": "张子怡",
+      "email": "lisi@company.com",
+      "phone": "+86 139 1111 1111",
+      "company": "工业测试中心",
+      "subject": "support",
+      "message": "我们的FICUS-2000设备出现了校准问题，需要技术支持。",
+      "privacyAgreed": true,
+      "submittedAt": "2024-01-20T14:15:00.000Z",
+      "status": "in-progress",
+      "notes": "已安排技术工程师联系"
+    },
+    {
+      "id": "3",
+      "name": "Wang Ming",
+      "email": "wang.ming@international.com",
+      "phone": "+1 555-0123",
+      "company": "International Gas Solutions",
+      "subject": "partnership",
+      "message": "We are interested in becoming a distributor for FICUS products in North America.",
+      "privacyAgreed": true,
+      "submittedAt": "2024-01-25T09:45:00.000Z",
+      "status": "resolved"
+    },
+    {
+      "id": "1749132236902",
+      "name": "杨非凡",
+      "email": "1311427547@qq.com",
+      "phone": "13851581762",
+      "company": "苏州永图电子科技有限公司",
+      "subject": "general",
+      "message": "购买产品",
+      "privacyAgreed": true,
+      "submittedAt": "2025-06-05T14:03:56.902Z",
+      "status": "new"
+    }
+  ]
+}

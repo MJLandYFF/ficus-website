@@ -299,7 +299,6 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <MapComponent 
-                    address="中国 上海市嘉定区城北路1585弄 上海天华人工智能科创园 11号楼101"
                     className="h-full"
                   />
                 </div>

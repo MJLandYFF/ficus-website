@@ -1,5 +1,3 @@
-import React from 'react';
-
 // 创建一个简单的Logo组件
 const Logo = () => {
   return (

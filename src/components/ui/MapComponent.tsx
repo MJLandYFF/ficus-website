@@ -2,11 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 interface MapComponentProps {
-  address: string;
   className?: string;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ address, className }) => {
+const MapComponent: React.FC<MapComponentProps> = ({ className }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<any>(null);
 

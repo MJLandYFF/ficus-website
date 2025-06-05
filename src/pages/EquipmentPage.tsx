@@ -1,7 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 
 const EquipmentPage = () => {
-  const { t, language, getRaw } = useLanguage();
+  const { t, getRaw } = useLanguage();
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
