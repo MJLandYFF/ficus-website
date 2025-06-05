@@ -1,0 +1,42 @@
+{
+  "contactSubmissions": [
+    {
+      "id": "1",
+      "name": "张三",
+      "email": "zhangsan@example.com",
+      "phone": "+86 138 0000 0000",
+      "company": "某科技有限公司",
+      "subject": "general",
+      "message": "我们对你们的气体分析设备很感兴趣，希望了解更多产品信息和价格。",
+      "privacyAgreed": true,
+      "submittedAt": "2024-01-15T10:30:00.000Z",
+      "status": "resolved",
+      "notes": "已发送产品资料和报价单"
+    },
+    {
+      "id": "2",
+      "name": "李四",
+      "email": "lisi@company.com",
+      "phone": "+86 139 1111 1111",
+      "company": "工业测试中心",
+      "subject": "support",
+      "message": "我们的FICUS-2000设备出现了校准问题，需要技术支持。",
+      "privacyAgreed": true,
+      "submittedAt": "2024-01-20T14:15:00.000Z",
+      "status": "in-progress",
+      "notes": "已安排技术工程师联系"
+    },
+    {
+      "id": "3",
+      "name": "Wang Ming",
+      "email": "wang.ming@international.com",
+      "phone": "+1 555-0123",
+      "company": "International Gas Solutions",
+      "subject": "partnership",
+      "message": "We are interested in becoming a distributor for FICUS products in North America.",
+      "privacyAgreed": true,
+      "submittedAt": "2024-01-25T09:45:00.000Z",
+      "status": "new"
+    }
+  ]
+}
