@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
   plugins: [react()],
-  base: "/ficus-website/", // Gitee Pages base path
+  base: "/", // 改为根路径，适配Vercel
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
