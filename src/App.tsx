@@ -16,7 +16,7 @@ import './App.css';
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <Router basename="/ficus-website">
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
