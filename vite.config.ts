@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", // 改为根路径，适配Vercel
+  base: "/ficus-website/", // GitHub Pages需要仓库名作为base路径
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
