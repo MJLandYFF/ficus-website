@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FICUS - 专业气体分析设备</title>
+    <script>
+        // GitHub Pages SPA 重定向处理
+        (function() {
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        // 重定向到主页
+        window.location.href = '/ficus-website/';
+    </script>
+</body>
+</html>
